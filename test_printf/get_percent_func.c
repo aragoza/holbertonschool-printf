@@ -1,18 +1,18 @@
 #include "test_header.h"
 
 /**
+ * get_percent_func - is a function pointer that check the operator passed by
+ * to know what function is associated and use the good function later in the
+ * _printf function. We check assoication between struct and letter passed.
  *
- * 
+ * @letter_percent: is normally a letter but could be a string in a 
+ * more developped programm later
  *
- *
- *
- *
- *
- *
- *
+ * Return: (func_and_type[i].function_percent) wich is the function associated to
+ * the % identified
  */
 
-int (*get_percent_func)(char *letter_percent)
+void (*get_percent_func)(char *letter_percent)
 {
 	percent_func_type func_and_type[] = {
         {"c", f_char},
