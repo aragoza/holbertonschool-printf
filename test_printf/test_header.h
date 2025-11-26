@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 
+int _strlen(char *s);
+
 typedef struct percent {
 
 	char * percent;
