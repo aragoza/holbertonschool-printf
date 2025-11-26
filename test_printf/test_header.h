@@ -1,9 +1,7 @@
 #ifndef _TEST_HEADER_
 #define _TEST_HEADER_
 
-#include <stdio.h>
-
-int _strlen(char *s);
+#include <stdarg.h>
 
 typedef struct percent {
 
