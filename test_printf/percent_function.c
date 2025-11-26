@@ -11,22 +11,44 @@
  */
 
 
-int f_char(char percent)
+char * f_char(char percent)
 {
-	return (write(1, &percent, 1));
+	char * character;
+	*character = percent;
+
+	return (character);
 }
 
-int f_string(char * percent)
+char * f_string(char * percent)
 {
-	return (write(1, &percent, 1));
+	char * string;
+	string = percent;
+	
+	return (string);
 }
 
-int f_int(int percent)
+char * f_int(int percent)
 {
+	char * number;
+	int reverse_number = 0;
 
+	while(percent > 0)
+	{
+		reverse = (reverse * 10) + (percent % 10);
+		percent = percent / 10;
+	}
+
+	while(reverse_number > 0)
+	{
+		*number = '0' + (reverse_number % 10);
+		reverse_number = reverse_number / 10;
+		*number++;
+	}
+	
+	return (number);
 }
 
-int f_float(float percent)
+char * f_float(float percent)
 {
 	
 }
