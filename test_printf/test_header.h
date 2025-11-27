@@ -1,19 +1,26 @@
 #ifndef _TEST_HEADER_
 #define _TEST_HEADER_
 
+#include <stddef.h>
 #include <stdarg.h>
+#include <stdlib.h>
+#include <unistd.h>
 
-typedef struct percent {
+typedef struct percent_str {
 
-	char * percent;
-	void (*function_percent(void * percent))();
+	char percent;
+	char *(*function_percent)(va_list);
 } percent_func_type;
 
-void (*get_percent_func)(char *letter_percent);
+int _printf(const char *format, ...);
 
-char * f_char(void percent);
-char * f_string(void *percent);
-char * f_int(void percent);
-char * f_float(void percent);
+char *(*get_percent_func(char c))(va_list);
+
+char * f_char(va_list percent);
+char * f_string(va_list percent);
+char * f_int(va_list percent);
+char * f_float(va_list percent);
+
+int _strlen(char *s);
 
 #endif /** _TEST_HEADER_ */
