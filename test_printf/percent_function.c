@@ -1,54 +1,44 @@
 #include "test_header.h"
 
 /**
+ * f_char - function that convert a char into a string
  *
+ * @percent: is the va_list that contain the char to convert
  *
- *
- *
- *
- *
- *
+ *	Return: (character) the string that has stock the char converted
  */
 
 
-char * f_char(char percent)
+char * f_char(va_list percent)
 {
-	char * character;
-	*character = percent;
+	char * character = malloc(1);
+	if (character == NULL)
+		return (NULL);
 
+	character[0] = (char) va_arg(percent, int);
 	return (character);
 }
 
-char * f_string(char * percent)
-{
-	char * string;
-	string = percent;
-	
-	return (string);
-}
+/**
+ * f_string - function that convert a string into another string
+ *
+ * @percent: is the va_list that contain the string to convert
+ *
+ * Return: (string1) the string that has stock the string converted
+ */
 
-char * f_int(int percent)
+char * f_string(va_list percent)
 {
-	char * number;
-	int reverse_number = 0;
+	int i;
+	char * string_holder = va_arg(percent, char *);
+	char * string1 = malloc(_strlen(string_holder));
+	if (string1 == NULL)
+		string1 = "(nil)";
 
-	while(percent > 0)
+	for (i = 0; string_holder[i] != '\0'; i++)
 	{
-		reverse = (reverse * 10) + (percent % 10);
-		percent = percent / 10;
+		string1[i] = string_holder[i];
 	}
 
-	while(reverse_number > 0)
-	{
-		*number = '0' + (reverse_number % 10);
-		reverse_number = reverse_number / 10;
-		*number++;
-	}
-	
-	return (number);
-}
-
-char * f_float(float percent)
-{
-	
+	return (string1);
 }
