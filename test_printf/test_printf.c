@@ -5,9 +5,9 @@
  * identifier it replace by the value of the variable
  * passed in parameter
  *
- * @format: 
+ * @format: character string that contain normal characters and percent
  *
- *
+ * Return: (size) the size of the string printed
  */
 
 int _printf(const char *format, ...)
@@ -46,7 +46,7 @@ int _printf(const char *format, ...)
 				continue;
 			}
 
-			value = temporary_func(parameter); /** we stock the value to replace later when we will print the whole string */
+			value = temporary_func(parameter);
 			for(j = 0; value[j] != '\0'; j++)
 			{
 				string_will_be_print[size] = value[j];
@@ -62,11 +62,12 @@ int _printf(const char *format, ...)
 		size++;
 	}
 
-	va_end(parameter); /** end the variadic now we have parcour all the parameter */
+	/** end the variadic now we have parcour all the parameter */
+	va_end(parameter);
 
 	string_will_be_print[size] = '\0';
 
-	write(1, string_will_be_print, size); /** normally we can write this because we know the size of the string */
+	write(1, string_will_be_print, size);
 
 	free(string_will_be_print);
 
