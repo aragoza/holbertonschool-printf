@@ -13,51 +13,62 @@
 int _printf(const char *format, ...)
 {
 
-	int i, j, size;
+	int i, j, size = 0;
 	char * value;
 	char *string_will_be_print;
-	void (*temporary_func)(char *);
+	char *(*temporary_func)(va_list);
 	va_list parameter;
 
 	va_start (parameter, format);
 
-	va_arg (parameter, char *); /** i am not sure if it is format here for second parameter */
+	string_will_be_print = malloc(1000);
+	if(string_will_be_print == NULL)
+	{	
+		return (-1);
+	}
 
-	for(i = 0, format[i] != '\0', i++)
+	for(i = 0; format[i] != '\0'; i++)
 	{
 		if(format[i] == '%')
 		{
 			i++;
-			size++;
-
-			temporary_func = get_percent_func(format[i]); /**  */
-			if(temporary_func == NULL)
+			if(format[i] == '\0')
 			{
+				i--;
 				continue;
 			}
 
-			value = temporary_func(va_arg(parameter, char *)); /** we stock the value to replace later when we will print the whole string */
-			for(j = 0, value[j] != '\0', j++)
+
+			temporary_func = get_percent_func(format[i]);
+			if(temporary_func == NULL)
+			{
+				i--;
+				continue;
+			}
+
+			value = temporary_func(parameter); /** we stock the value to replace later when we will print the whole string */
+			for(j = 0; value[j] != '\0'; j++)
 			{
 				string_will_be_print[size] = value[j];
 				size++;
 			}
 
-			size += -2;
 		}
-		else if(format[i - 1] == '\0' && i > 0)
-		{
-			break;
-		}
+
 		else
 		{
-			string_will_be_print[size] = format[i]
+			string_will_be_print[size] = format[i];
 		}
 		size++;
 	}
-	va_end(parameter); /** end the variadic now we have parcour all the parameter */
-	
-	write(1, &string_will_be_print, size); /** normally we can write this because we know the size of the string */
 
-	return(size);
+	va_end(parameter); /** end the variadic now we have parcour all the parameter */
+
+	string_will_be_print[size] = '\0';
+
+	write(1, string_will_be_print, size); /** normally we can write this because we know the size of the string */
+
+	free(string_will_be_print);
+
+	return (size);
 }
