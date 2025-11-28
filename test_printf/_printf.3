@@ -1,0 +1,71 @@
+.TH _printf 3
+.SH 3 _printf
+
+.SY .B SYNOPSIS
+
+#include "test_header.h"
+
+int _printf(const char * format, ...);
+
+.HP Format of the format string 
+
+The format string is composed of ordinary characters (not %),
+if there is specifier (%) the function will replace the specifier
+by the next argument pass in parameter.
+
+.RE
+
+.HP Flag character (keyword specifier)
+
+The character % is followed by :
+
+d : to replace by an int
+c : to replace by a char
+s : to replace by a char * (or string)
+
+.RE
+
+.YS
+
+.HP .B DESCRIPTION
+
+The function _printf can take multiple arguments in parameter (it take a string in first
+then you can have constant variable of type char / char * / int)
+
+The function will translate the other argument parameter in char * and replace the identifier 
+keyword in the first string to print a string with no identifier at the end.
+
+.RE
+
+.HP RETURN VALUE
+
+When the function work correctly _printf() return the length of the final string
+
+.RE
+
+.HP EXAMPLES
+
+To print a number : 
+
+    .HP
+    #include "test_header.h"
+    printf("my age is %d", your_age_number)
+    .RE
+
+To print a char : 
+
+    .HP
+    #include "test_header.h"
+    printf("my favorite lette%c is %c, 'r', random_letter)
+    .RE
+
+To print a string : 
+
+    .HP
+    #include "test_header.h"
+    printf("%s is, %s, "my favorite string", sentence)
+    .RE
+
+
+.TH [footer-middle]
+Manual page _printf(3)
