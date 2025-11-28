@@ -29,7 +29,7 @@ example of _printf:
 
 # Flow chart
 
-![This How the function work and is read when it's use.](Blank_diagram.pdf)
+![This How the function work and is read when it's use.](Blank_diagram.png)
 
 # Format specifier hold
 
