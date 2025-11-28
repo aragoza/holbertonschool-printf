@@ -19,6 +19,9 @@ int _printf(const char *format, ...)
 	char *(*temporary_func)(va_list);
 	va_list parameter;
 
+	if (format == NULL)
+		return (-1);
+
 	va_start (parameter, format);
 
 	string_will_be_print = malloc(1000);
@@ -29,15 +32,20 @@ int _printf(const char *format, ...)
 
 	for(i = 0; format[i] != '\0'; i++)
 	{
-		if(format[i] == '%' && format[i + 1] != '\0')
+		if(format[i] == '%')
 		{
-			i++;
-			if(format[i] == '\0')
+			if(format[i + 1] == '\0')
 			{
-				i--;
-				continue;
+				string_will_be_print[size] = '%';
+				size++;
+				string_will_be_print[size] = '\0';
+				write(1, string_will_be_print, size);
+				free(string_will_be_print);
+				va_end(parameter);
+				return (size);
 			}
 
+			i++;
 
 			temporary_func = get_percent_func(format[i]);
 			if(temporary_func == NULL)
@@ -49,6 +57,9 @@ int _printf(const char *format, ...)
 			}
 
 			value = temporary_func(parameter);
+			if (value == NULL)
+				value = "(null)";
+
 			for(j = 0; value[j] != '\0'; j++)
 			{
 				string_will_be_print[size] = value[j];
@@ -60,8 +71,9 @@ int _printf(const char *format, ...)
 		else
 		{
 			string_will_be_print[size] = format[i];
+			size++;
 		}
-		size++;
+
 	}
 
 	/** end the variadic now we have parcour all the parameter */
@@ -75,4 +87,3 @@ int _printf(const char *format, ...)
 
 	return (size);
 }
-	

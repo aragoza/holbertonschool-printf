@@ -30,10 +30,18 @@ char * f_char(va_list percent)
 char * f_string(va_list percent)
 {
 	int i;
-	char * string_holder = va_arg(percent, char *);
-	char * string1 = malloc(_strlen(string_holder));
+	char * string_holder;
+	char * string1;
+
+	string_holder = va_arg(percent, char *);
+
+	if (string_holder == NULL)
+		return (NULL);	
+
+	string1 = malloc(_strlen(string_holder) + 1);
+
 	if (string1 == NULL)
-		string1 = "(nil)";
+		return (NULL);
 
 	for (i = 0; string_holder[i] != '\0'; i++)
 	{
