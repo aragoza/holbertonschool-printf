@@ -1,4 +1,4 @@
-#include "test_header.h"
+#include "main.h"
 
 /**
  * get_percent_func - is a function pointer that check the operator passed by

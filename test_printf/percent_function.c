@@ -1,4 +1,4 @@
-#include "test_header.h"
+#include "main.h"
 
 /**
  * f_char - function that convert a char into a string

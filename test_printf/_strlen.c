@@ -1,4 +1,4 @@
-#include "test_header.h"
+#include "main.h"
 
 /**
  * _strlen - say the size of a string

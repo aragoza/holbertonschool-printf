@@ -1,4 +1,4 @@
-#include "test_header.h"
+#include "main.h"
 
 /** 
  * f-int - function that convert an integer into a string
