@@ -4,7 +4,11 @@
 
 ## Description
 
-An in-depth paragraph about your project and overview of use.
+The function _printf can take multiple arguments in parameter (it take a string in first
+then you can have constant variable of type char / char * / int)
+
+The function will translate the other argument parameter in char * and replace the identifier 
+keyword in the first string to print a string with no identifier at the end.
 
 ### Dependencies
 
@@ -22,6 +26,10 @@ int _printf(const char *format, ...)
 ```
 example of _printf:
 * _printf("constant char * format with format specifier", const int, const char, const string)
+
+# Flow chart
+
+![This How the function work and is read when it's use.](/home/aragoza/holbertonschool-printf/Blank diagram.pdf)
 
 # Format specifier hold
 
